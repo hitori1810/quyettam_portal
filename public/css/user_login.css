@@ -1,0 +1,376 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url(../img/bg-pattern-blue.png);
+    font-family: sans-serif;
+    font-size: 10pt;
+}
+
+div.clear {
+    clear: both;
+}
+
+div.error {
+    text-align: center;
+    color: red;
+}
+
+div.round10 {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+div#wrapper {
+    width: 815px;
+    margin: 10px auto 0 auto;
+}
+
+div#header {
+    position: relative;
+}
+
+div#header h1 {
+    width: 550px;
+    float: left;
+    font-size: 18pt;
+    color: white;
+    padding-bottom: 5px;
+}
+
+div#header ul#lang-chooser {
+    padding-top: 10px;
+    width: 150px;
+    float: right;
+    list-style: none;
+}
+
+div#header ul#lang-chooser li {
+    float: left;
+    padding: 0 5px 0 5px;
+    border-left: 1px solid white;
+}
+
+div#header ul#lang-chooser li.active {
+    color: white;
+    text-decoration: underline;
+}
+
+div#header ul#lang-chooser li:first-child {
+    border-left: none;
+}
+
+div#header ul#lang-chooser li a {
+    color: white;
+    text-decoration: none;
+}
+
+div#header ul#lang-chooser li a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+div#content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    clear: both;
+    position: relative;
+    background: #eaeaea;
+    border: 5px solid white;
+    -webkit-box-shadow: rgba(0,0,0,0.7) 0 4px 10px -1px;
+    -moz-box-shadow: rgba(0,0,0,0.7) 0 4px 10px -1px;
+    box-shadow: rgba(0,0,0,0.7) 0 4px 10px -1px;
+}
+
+div#content div#login {
+    margin: 20px 10px 20px 20px;
+    float: left;
+    width: 370px;
+    height: 235px;
+    background: white;
+    border: 1px solid #e3e3e3;
+    color: #535353;
+}
+
+div#login td.label {
+    font-weight: bold;
+}
+
+div#login table {
+    margin: 20px;
+}
+
+div#login table td {
+    padding-bottom: 5px;
+}
+
+div#login input[type="text"], div#login input[type="password"] {
+    background: #fbfbfb;
+    color: #535353;
+    border: 1px solid #e0e0e0;
+    width: 170px;
+    height: 35px;
+    padding: 0 10px;
+    font-weight: bold;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+div#login input[type="submit"] {
+    width: 110px;
+    height: 37px;
+    background: url(../img/login-button.png);
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+div#login div.error {
+    margin-top: -10px;
+}
+
+div#content div#about {
+    margin: 20px 20px 20px 10px;
+    float: right;
+    width: 370px;
+    height: 235px;
+    background: white;
+    border: 1px solid #e3e3e3;
+}
+
+div#about div#logo {
+    text-align: center;
+    padding-top: 20px;
+}
+
+div#about div#description {
+    margin: 10px 20px;
+    color: #484848;
+}
+
+div#about div#description p {
+    line-height: 10pt;
+}
+
+div#content div#contact {
+    clear: both;
+    position: relative;
+    width: 760px;
+    height: 115px;
+    background: white;
+    border: 1px solid #e3e3e3;
+    margin: 0px auto 20px auto;
+}
+
+div#contact ul#chat {
+    float: left;
+    width: 350px;
+    margin-left: 20px;
+    margin-top: 25px;
+    list-style-position: inside;
+    list-style-image: url(../img/chat-icon.png);
+}
+
+div#contact p {
+    padding: 8px;
+}
+
+ul#chat li {
+    position: relative;
+}
+
+ul#chat li a {
+    color: #676767;
+    text-decoration: none;
+    position: absolute;
+    top: 7px;
+}
+
+ul#chat li a:hover {
+    text-decoration: underline;
+}
+
+div#contact ul#phone {
+    float: right;
+    width: 370px;
+    margin-top: 15px;
+    list-style-position: inside;
+    list-style-image: url(../img/phone-icon.png);
+}
+
+ul#phone li {
+    position: relative;
+    margin-bottom: 5px;
+}
+
+ul#phone li span {
+    color: #a51c33;
+    position: absolute;
+    top: -1px;
+}
+
+ul#phone li strong {
+    color: #666666;
+}
+
+div#footer {
+    color: white;
+    text-align: center;  
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;        
+}
+
+div#footer a {
+    text-decoration: none;
+    color: white;
+}
+
+div#footer a:hover {
+    text-decoration: underline;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+    padding: 10px 16px;
+    font-size: 17px;
+    line-height: 1.3333333;
+    border-radius: 2px;
+}
+
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    border-radius: 2px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #2196f3;
+    border-color: #0d8aee;
+}
+
+.sweet-alert .btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    margin: 20px 2px 0;
+}
+
+#header_image {
+/*    display: none;*/
+}
+
+#login_content{
+    width:100%;
+    margin-top : 100px;
+}
+ #header h1 {
+        display: none;
+ }
+  .footer-top {
+        background-image: url(../../public/img/waveUp3.png);
+        background-repeat: repeat;
+        height: 50px;
+    }
+     #contact{
+        display: none;
+    }
+    .footer-bottom {
+        background: #024D8D !important;
+        min-height: 50px !important;
+        width: 100% !important;
+        padding-top: 25px !important;
+        padding-bottom: 25px !important;
+    }
+@media only screen and (max-width: 830px) {
+    #header h1 {
+        display: none;
+    } 
+    #about{
+        display: none;
+    }
+    #contact{
+        display: none;
+    }
+    
+    div#content{
+        
+    } 
+    
+    div#wrapper{
+         width: 400px;
+         margin: 20px auto 0
+    }
+    
+    div#content div#login {
+        margin: 9px;
+    }
+    
+    #header_image {
+        display: block;         
+    }
+    
+    .footer-top {
+        background-image: url(../../public/img/waveUp3.png);
+        background-repeat: repeat;
+        height: 50px;
+    }
+    
+    .footer-bottom {
+        background: #024D8D !important;
+        min-height: 30px !important;
+        width: 100% !important;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+    }
+    
+    #login_content{
+        width:100%; 
+        padding-bottom: 30px;        
+    }     
+    
+    div#footer {
+        bottom: 0;
+        position: fixed;
+        z-index: -5;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 400px) {   
+    div#wrapper{
+         width: 320px;
+    }
+    
+    div#content div#login {
+        margin: 0px;
+        width: 310px;
+    }
+    
+    div#login table {
+        margin-left: 5px;
+        margin-right: 5px;
+        height: 210px;
+    }
+}  

@@ -1,0 +1,43 @@
+#calendar .fc-toolbar {
+    height: 50px;
+}
+
+#calendar .fc-toolbar .fc-center {
+    margin-top: -6px;
+}
+
+#calendar .fc-toolbar .fc-center button {
+    margin-top: -4px;
+}
+
+.fc-event-container {
+    cursor: pointer;
+}
+
+.custom-modal-header{
+    color:#2196f3;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.session_detail {
+    font-size: 14px; 
+}
+
+.session_detail .label {
+    text-align: right;
+    background: #ddd !important;
+    width: 18%;
+}
+.label {
+    background: #ddd;
+}
+
+.session_detail .value {
+    padding: 5px;
+    width: 32%;
+}
+
+.no-margin{
+    margin:0px !important;
+}

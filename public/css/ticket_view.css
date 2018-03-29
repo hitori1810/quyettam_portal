@@ -1,0 +1,8 @@
+.lv-message .ms-meta {
+    display: block;
+}
+
+.ms-meta * {
+    display: inline-block;
+    color: #B3B3B3;
+}

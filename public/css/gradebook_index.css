@@ -1,0 +1,78 @@
+.class_id {
+    width:200px;
+    height:27px;
+}
+.gradebook_content, .gradebook_result{
+    margin-top: 30px;
+}
+.gradebook_content table, .gradebook_content th,.gradebook_content td {
+    border-top: 1px solid cadetblue !important;
+    height: 30px;
+    text-align: center;
+}
+#gradebook_result {
+    height: 30px;
+}
+#gradebook_result td:first-child {
+    width: 20%;
+    text-align: right;
+    padding-right: 20px;
+}
+#gradebook_detail {
+    /*  height: 150px;
+    background: #f00;
+    margin: 0 auto;     */
+
+}
+.gb_detail td:first-child {
+    width: 20%;
+    text-align: right;
+    padding-right: 20px;
+}
+.mark_detail td:first-child {
+    font-weight: bold;
+    white-space: nowrap;
+}
+.mark_detail th, .mark_detail td {       
+    text-align: center;
+    border-top: 1px solid cadetblue !important;
+/*   height: 30px;      */
+}
+.mark_detail th{
+    font-weight: bold !important;
+}
+.mark_detail{
+    margin-top: 20px;;
+}
+.mark_detail .mark_detail th,.mark_detail td {  
+    border-top: 1px solid cadetblue !important;
+    height: 30px;
+    text-align: center;
+}
+.gradebook_content .btn{
+    padding-bottom: 4px;
+    padding-top: 4px;
+}
+
+.custom-modal-header{
+    color:#2196f3;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+               
+.th_gb_detail_name {   
+    width: 15%;        
+}
+               
+.th_gb_detail_overall {   
+    width: 15%;        
+}
+               
+.tbl_gb_detail th, .tbl_gb_detail td {   
+    text-align: center;    
+}
+               
+.tbl_gb_detail th {
+    font-weight: bold! important;    
+    text-align: center;    
+}
