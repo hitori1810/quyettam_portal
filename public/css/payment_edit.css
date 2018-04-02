@@ -1,0 +1,14 @@
+  
+
+#tblPayDetail th{
+    text-align: center;
+    font-weight:bold;    
+}
+
+#tblPayDetail td{
+    text-align: center;  
+}
+
+.number {
+    text-align:right!important;  
+} 

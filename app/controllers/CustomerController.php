@@ -9,7 +9,7 @@ class CustomerController extends BaseController {
         );
 
         return View::make('customer.index')->with($data);
-    }
+    }  
 
     // Render the add page
     public function edit() {
@@ -71,5 +71,5 @@ class CustomerController extends BaseController {
             Session::flash('error_message', trans('customer_edit.save_failed_msg'));
             return Redirect::back();
         }    
-    }    
+    }   
 }

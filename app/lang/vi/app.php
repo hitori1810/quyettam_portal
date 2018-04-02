@@ -40,5 +40,5 @@ return array(
     'payment' => 'Hóa đơn',
     'create' => 'Tạo mới',
     'listview' => 'Danh sách',
-    'product' => 'Hóa đơn',
+    'product' => 'Sản phẩm',
 );

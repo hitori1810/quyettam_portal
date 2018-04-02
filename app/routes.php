@@ -27,9 +27,11 @@
         Route::get('/customer/edit', 'CustomerController@edit');                   
         Route::post('/customer/save', 'CustomerController@save');                   
         Route::get('/payment/index', 'PaymentController@index');                      
-        Route::post('/payment/edit', 'PaymentController@edit');                   
+        Route::get('/payment/edit', 'PaymentController@edit');                      
+        Route::post('/payment/save', 'PaymentController@save');                   
         Route::get('/product/index', 'ProductController@index');                      
-        Route::post('/product/edit', 'ProductController@edit');                      
+        Route::get('/product/edit', 'ProductController@edit');                      
+        Route::post('/product/save', 'ProductController@save');                      
     });
 
     // Routes that dont't need to be checked for authentication

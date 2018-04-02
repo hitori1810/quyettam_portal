@@ -38,45 +38,7 @@ class SugarUtil {
         if(isset($result->status))
             return $result->status;
         return false;
-    }
-
-    // Util function to get complaint list that belongs to the current portal contact
-    public static function getFeedbackList() {
-        $client = self::getClient();
-        $session = Session::get('session');
-        $student = Session::get('contact');
-        //$rootSession = $client->getRootSession();
-
-        // Get feedback list
-        /* $feddbacks = $client->getFullList(
-        $session->root_session_id,
-        'Cases',
-        array(),    // Get all fields
-        'cases.student_id = "'.$student->id.'"',
-        'cases.date_entered ASC'
-        );  */
-        $relationshipsParams = array(
-            'session' => $session->root_session_id,
-            'module_name' => 'Contacts',
-            'module_id' => $student->id,
-            'link_field_name' => 'contacts_j_feedback_1',
-            'related_module_query' => 'j_feedback.type_feedback_list = "Customer" ' ,
-            'related_fields' => array(
-                'id', 'name', 'status',  'description',
-                'assigned_user_name', 'date_entered', 'slc_target', 'resolved_date' ,
-                'type_feedback_list','relate_feedback_list', 'feedback', 'receiver'
-            ),
-            'related_module_link_name_to_fields_array' => array(),
-            'deleted'=> '0',
-            'order_by' => ' date_entered DESC ',
-            'offset' => 0,
-            'limit' => 1000,
-        );
-
-        $result = $client->call(SugarMethod::GET_RELATIONSHIPS, $relationshipsParams);
-        $feddbacks = $client->toSimpleObjectList($result->entry_list);
-        return $feddbacks;
-    }  
+    }       
 
     // Util function to convert a given date string with from format to db date format
     public static function toDbDate($dateString, $fromFormat, $toUTC = false) {
@@ -169,6 +131,27 @@ class SugarUtil {
         }
 
         return $timezoneList;
-    }        
+    } 
+
+    // Util function to format date time string
+    public static function formatDate($dateString) {
+        if(!empty($dateString)) {
+            $preferences = Session::get('user_preferences');
+            $timezone = isset($preferences->timezone)?$preferences->timezone:"";
+            $dateFormat = isset($preferences->date_format)?$preferences->date_format:"";
+            $timeFormat = isset($preferences->time_format)?$preferences->time_format:"";
+
+            if(strlen($dateString) > 10) {
+                $format = $dateFormat .' '. $timeFormat;
+            }
+            else {
+                $format = $dateFormat;
+            }
+
+            $date = new DateTime($dateString);
+            $date->setTimezone(new DateTimeZone($timezone));
+            return $date->format($format);
+        }
+    }   
 }
 ?>

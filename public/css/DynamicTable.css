@@ -1,0 +1,30 @@
+.dynamicTable {
+    border-collapse: collapse;
+}
+
+.dynamicTable thead th {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 5px !important;
+}
+
+.dynamicTable th:last-child, .dynamicTable td:last-child {
+    width: 30px;
+    text-align: center;
+}
+
+.dynamicTable th, .dynamicTable td {
+    border: 1px solid silver;
+}
+
+.dynamicTable .template {
+    display: none;
+}
+
+.dynamicTable tfoot td {
+    padding: 2px !important;
+}
+
+.dynamicTable .btnAddRow {
+    margin-right: 5px;
+}
