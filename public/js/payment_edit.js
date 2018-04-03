@@ -1,5 +1,5 @@
 $(document).ready(function(){  
-//    generateTable($("#payment_detail_json").val());
+    generateTable($("#payment_detail_json").val());
 })
 
 function generateTable(str){
@@ -19,7 +19,8 @@ function addRow(thisElement){
     var template = table.find('tfoot.template');
     var newRow = template.html();
     table.find('tbody').append(newRow);
-    var inserted = table.find('tbody').find('tr:last');     
+    var inserted = table.find('tbody').find('tr:last');
+    table.find('tbody').find('tr:last').find(".quantity").val(1);     
 }
 
 function delRow(thisElement){
@@ -39,12 +40,23 @@ function changeProduct(this_row){
 }
 
 function calculatePayDetailAmount(this_row){
-    var quantity = this_row.find(".quantity").val();
-    var unit_cost = this_row.find(".unit_cost").val();
+    var quantity = parseInt(this_row.find(".quantity").val());
+    if(quantity == 0){
+        this_row.find(".quantity").val(1);
+        quantity = 1;        
+    }     
+    
+    var unit_cost = parseInt(this_row.find(".unit_cost").val());
+    if(unit_cost == 0){
+        this_row.find(".unit_cost").val(1);
+        unit_cost = 1;        
+    }
 
+    
+    
     var amount = unit_cost * quantity;
     this_row.find(".pay_detail_amount").val(amount);
-    this_row.find(".lbl_pay_detail_amount").text(amount);   
+    this_row.find(".lbl_pay_detail_amount").text(App.formatNumber(amount));   
     calculatePaymentAmount();
 }
 
@@ -55,6 +67,6 @@ function calculatePaymentAmount(){
         total_amount += parseInt($(this).val());    
     });
 
-    $("#lbl_payment_amount").text(Lang.payment_edit.total_amount + ": " + total_amount);
+    $("#lbl_payment_amount").text(Lang.payment_edit.total_amount + ": " + App.formatNumber(total_amount));
     $("#payment_amount").val(total_amount);
 }

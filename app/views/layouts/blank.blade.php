@@ -10,7 +10,7 @@
 
         <!-- Vendor CSS -->
         <link href="{{ URL::asset('public/vendors/bower_components/animate.css/animate.min.css') }}" rel="stylesheet">
-        <link href="{{ URL::asset('public/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css') }}" rel="stylesheet">
+        <link href="{{ URL::asset('public/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css') }}" rel="stylesheet">                                                     
 
         <!-- Page specific styles -->
         @yield('styles')
@@ -30,6 +30,7 @@
         <script src="{{ URL::asset('public/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js') }}"></script>
         <script src="{{ URL::asset('public/js/notification.js') }}"></script>
         <script src="{{ URL::asset('public/js/dialog.js') }}"></script>
+        
         
         <!-- Page specific scripts -->
         @yield('scripts')

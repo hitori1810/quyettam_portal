@@ -18,7 +18,7 @@ class PaymentController extends BaseController {
         $session = Session::get('session');
         $user = Session::get('user');   
         $app_list_strings = Session::get('app_list_strings');
-        
+
         if(!empty($_REQUEST['id'])){
             $recordId = $_REQUEST['id'];
             $data = array(
@@ -26,7 +26,7 @@ class PaymentController extends BaseController {
             );
             $paymentEntry = $this->client->call2('GetPaymentInfo', $data);  
             $paymentInfo = $paymentEntry->entry_list; 
-            
+
             $paymentDetail = json_decode(html_entity_decode($paymentInfo->payment_detail)); 
             if(!empty($paymentInfo)){
                 $data = array(                    
@@ -51,32 +51,46 @@ class PaymentController extends BaseController {
                 'paymentDetail' => '',            
                 'paymentDetailJson' => '',            
             );    
-        }    
-        
-                                 
+        }      
 
         $productList = $this->client->call2("GetProductList", array());
         $productList = $productList->entry_list;
-        
+
         $data['customerList'] = $app_list_strings->entry_list->customer_options;
         $data['productList'] = $productList;
 
         return View::make('payment.edit')->with($data);    
-    }
+    }        
 
     // Handle saving feedback
     public function save() {
         $session = Session::get('session');
         $user = Session::get('user');       
 
+        $payDetailArr = array();
+        foreach($_POST['product'] as $key => $value){
+            if(empty($value)) continue;  
+            if(empty($_POST['quantity'][$key])) continue;  
+            if(empty($_POST['unit_cost'][$key])) continue;  
+            if(empty($_POST['payment_amount'][$key])) continue;  
+
+            $payDetailArr[] = array(
+                'product'       => $_POST['product'][$key], 
+                'quantity'      => $_POST['quantity'][$key], 
+                'unit'          => $_POST['unit'][$key],    
+                'unit_cost'     => $_POST['unit_cost'][$key],    
+                'payment_amount'    => $_POST['pay_detail_amount'][$key], 
+            );
+        } 
+
         // Save user data
         $data = array(
-            'id'            => Input::get('record_id'),          
-            'name'          => Input::get('name'),           
+            'id'                => Input::get('record_id'),          
+            'name'              => Input::get('name'),           
             'customer'          => Input::get('customer'),           
-            'payment_date'    => Input::get('payment_date'),                
-            'payment_amount'  => Input::get('payment_amount'),             
-            'payment_detail'  => Input::get('payment_detail'),             
+            'payment_date'      => Input::get('payment_date'),                
+            'payment_amount'    => Input::get('payment_amount'),             
+            'payment_detail'    => $payDetailArr,             
         );
 
         $result = $this->client->call2('SavePayment', $data);
@@ -89,5 +103,5 @@ class PaymentController extends BaseController {
             Session::flash('error_message', trans('payment_edit.save_failed_msg'));
             return Redirect::back();
         }    
-    }     
+    }      
 }

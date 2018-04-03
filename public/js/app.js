@@ -25,7 +25,7 @@ var App = {
                 "sFilterInput": "form-control filter-input input-rounded ml-sm"
             },
         });
-        
+
         // Default class modification for Datatables
         $.extend($.fn.dataTableExt.oStdClasses, {
             "sWrapper": "dataTables_wrapper form-inline"
@@ -113,7 +113,7 @@ var App = {
                         '<li class="next disabled"><a href="#"><i class="zmdi zmdi-more-horiz"></i></a></li>' +
                         '</ul>'
                     );
-                    
+
                     var els = $('a', nPaging);
                     $(els[0]).bind('click.DT', {action: "previous"}, fnClickHandler);
                     $(els[1]).bind('click.DT', {action: "next"}, fnClickHandler);
@@ -148,12 +148,12 @@ var App = {
                         for (j = iStart; j <= iEnd; j++) {
                             sClass = (j == oPaging.iPage + 1) ? 'class="active"' : '';
                             $('<li '+ sClass +'><a href="#">'+ j +'</a></li>')
-                                .insertBefore( $('li:last', an[i])[0])
-                                .bind('click', function (e) {
-                                    e.preventDefault();
-                                    oSettings._iDisplayStart = (parseInt($('a', this).text(), 10) - 1) * oPaging.iLength;
-                                    fnDraw(oSettings);
-                                });
+                            .insertBefore( $('li:last', an[i])[0])
+                            .bind('click', function (e) {
+                                e.preventDefault();
+                                oSettings._iDisplayStart = (parseInt($('a', this).text(), 10) - 1) * oPaging.iLength;
+                                fnDraw(oSettings);
+                            });
                         }
 
                         // Add / remove disabled classes from the static elements
@@ -172,7 +172,7 @@ var App = {
                 }
             }
         } );
-        
+
         // Init datatables by default
         $('.datatable').not('.datatable-manual').each(function() {
             var columns = [];
@@ -199,7 +199,7 @@ var App = {
             });
         });
     },
-    
+
     // Util function to init validation
     initValidation: function(formId, rules, messages) {
         $('#' + formId).validate({
@@ -208,7 +208,7 @@ var App = {
             errorPlacement: function(error, element) {
                 // Move error message outside the fg line
                 var fgLine = element.closest('.fg-line');
-                
+
                 if(fgLine[0] != null){
                     error.insertAfter(fgLine);
                 }
@@ -216,18 +216,68 @@ var App = {
             // On on error
             highlight: function (element, errorClass) {
                 var formGroup = $(element).closest('.form-group');
-                
+
                 formGroup.addClass('has-error');
                 formGroup.removeClass('has-success');
             },
             // On success
             success: function(errors, element) {
                 var formGroup = $(element).closest('.form-group');
-                
+
                 formGroup.removeClass('has-error');
                 formGroup.addClass('has-success');
             }
         });
+    },
+
+    formatNumber: function(n) { 
+        var num_grp_sep = ",";
+        var dec_sep = 3;
+        var round = 0;
+        var precision = 0;
+        n = n ? n.toString() : '';
+        if (n.split)
+            n = n.split('.');
+        else
+            return n;               
+        if (n.length > 2)
+            return n.join('.');
+        if (typeof round != 'undefined') {
+            if (round > 0 && n.length > 1) {
+                n[1] = parseFloat('0.' + n[1]);
+                n[1] = Math.round(n[1] * Math.pow(10, round)) / Math.pow(10, round);
+                if (n[1] >= 1) {
+                    n[0] = n[0].indexOf('-') < 0 ? parseInt(n[0]) + parseInt(n[1]) : parseInt(n[0]) - parseInt(n[1]);
+                    n[0] = n[0].toString();
+                    n[1] = '';
+                } else {
+                    n[1] = n[1].toString().split('.')[1];
+                }
+            }
+            if (round <= 0) {
+                n[0] = Math.round(parseInt(n[0], 10) * Math.pow(10, round)) / Math.pow(10, round);
+                n[1] = '';
+            }
+        }
+        if (typeof precision != 'undefined' && precision >= 0) {
+            if (n.length > 1 && typeof n[1] != 'undefined')
+                n[1] = n[1].substring(0, precision);
+            else
+                n[1] = '';
+            if (n[1].length < precision) {
+                for (var wp = n[1].length; wp < precision; wp++)
+                    n[1] += '0';
+            }
+        }
+        regex = /(\d+)(\d{3})/;
+        while (num_grp_sep != '' && regex.test(n[0]))
+            n[0] = n[0].toString().replace(regex, '$1' + num_grp_sep + '$2');
+        return n[0] + (n.length > 1 && n[1] != '' ? dec_sep + n[1] : '');
+    },     
+
+    unformatNumber: function(str) { 
+        str = str.replace(/,/g, "");
+        return parseInt(str, 10);
     },
 };
 
@@ -236,7 +286,7 @@ $(function() {
     $('#menu-logout').click(function(e) {
         e.preventDefault();
         var url = $(this).attr('href');
-        
+
         Dialog.confirm(Lang.app.logout_confirm_title, Lang.app.logout_confirm_msg,Lang.app.logout_confirm_oklabel, Lang.app.logout_confirm_cancellabel, function() {
             location.href = url;    
         });

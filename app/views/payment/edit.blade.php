@@ -2,10 +2,8 @@
 
 @section('title', trans('payment_edit.page_title'))
 
-@section('styles')                                                                              
-<link href="{{ URL::asset('public/css/DynamicTable.css') }}" rel="stylesheet" type="text/css">          
-<link href="{{ URL::asset('public/css/payment_edit.css') }}" rel="stylesheet" type="text/css">          
-<!--<link href="{{ URL::asset('public/vendors/bower_components/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" type="text/css">                    -->
+@section('styles')                                                                                      
+<link href="{{ URL::asset('public/css/payment_edit.css') }}" rel="stylesheet" type="text/css">                                                                                         
                                                                                                                               
 @stop
       
@@ -37,7 +35,7 @@
                             <label class="control-label">{{ trans('payment_edit.payment_date') }}</label>
                             <div class="input-group form-group">
                                 <div class="dtp-container fg-line">
-                                    <input type='text' class="form-control date-picker" value="{{$payment_date}}"></input>  
+                                    <input type='text' name='payment_date' class="form-control date-picker" value="{{SugarUtil::formatDate($payment_date)}}"></input>  
                                 </div>
                             </div>
                         </div>
@@ -56,7 +54,7 @@
                                             <th style="width:15%">{{ trans('payment_edit.unit') }}</th>
                                             <th style="width:10%">{{ trans('payment_edit.unit_cost') }}</th>
                                             <th style="width:15%">{{ trans('payment_edit.pay_detail_amount') }}</th>           
-                                            <th style="width:10%"><input type="button" class="btnAddRow" value="{{ trans('payment_edit.add_row') }}" onclick="addRow(this);"></input></th>
+                                            <th style="width:10%"><input type="button" class="btnAddRow btn-primary waves-effect" value="{{ trans('payment_edit.add_row') }}" onclick="addRow(this);"></input></th>
                                         </tr>
                                     </thead>
                                     <tbody>           
@@ -88,7 +86,7 @@
                                                 <input type="hidden" name="pay_detail_amount[]" width="100%" class="pay_detail_amount" value=""/>
                                             </td>
                                             <td>
-                                                <input type="button" class="btnDelRow btn btn-danger waves-effect" value="{{ trans('payment_edit.remove_row') }}" onclick="delRow(this);"></input>
+                                                <input type="button" class="btnDelRow  btn-danger waves-effect" value="{{ trans('payment_edit.remove_row') }}" onclick="delRow(this);"></input>
                                             </td>
                                         </tr>
                                     </tfoot>
@@ -115,8 +113,7 @@
     {{ ViewUtil::renderJsLanguage('payment_edit') }}
 
     <script src="{{ URL::asset('public/vendors/jquery-validate/jquery.validate.min.js') }}"></script>                                    
-    <script src="{{ URL::asset('public/js/payment_edit.js') }}"></script>                                                                
-    <script src="{{ URL::asset('public/vendors/bower_components/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js') }}"></script>       
+    <script src="{{ URL::asset('public/js/payment_edit.js') }}"></script>                                                                      
     
                                                                                                                                  
     @if(Session::has('error_message'))

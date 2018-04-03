@@ -21,18 +21,23 @@
                         <th>{{trans('payment_index.customer')}}</th>
                         <th>{{trans('payment_index.payment_date')}}</th>
                         <th>{{trans('payment_index.payment_amount')}}</th>      
-                        <th></th>
+                        <th style="width:20%"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($paymentList as $payment)
                     <tr record_id="{{ $payment->id }}">
                         <td >{{ $payment->name }} </td>
-                        <td >{{ $customerList->{$payment->customer} }} </td>                         
+                        <td >     
+                            <a href="{{ URL::to('customer/view?id=')}}{{$payment->customer}}">
+                                {{ $customerList->{$payment->customer} }} 
+                            </a>    
+                        </td>                         
                         <td data-type="timedate" >{{ SugarUtil::formatDate($payment->payment_date) }} </td> 
-                        <td >{{ round($payment->payment_amount) }} </td>                               
+                        <td >{{ number_format($payment->payment_amount) }} </td>                               
                         <td style="text-align:center">
                             <button type="button" class="btn btn-primary btn_edit" url="{{ URL::to('payment/edit') }}" onclick="editPayment($(this).closest('tr'));">{{ trans('payment_index.btn_edit') }}</button>
+                            <button type="button" class="btn btn-primary btn_export" onclick="exportPayment($(this).closest('tr'));">{{ trans('payment_index.btn_export') }}</button>
                         </td>                                          
                     </tr>
                     @endforeach

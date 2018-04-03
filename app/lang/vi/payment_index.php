@@ -6,6 +6,7 @@ return array(
     'customer' => 'Khách hàng',
     'payment_amount' => 'Tổng tiền',          
     'page_title' => 'Danh sách hóa đơn',  
+    'btn_export' => 'Xuất Excel',  
     'btn_edit' => 'Sửa',  
     'save_successful_msg' => 'Lưu thành công',  
 );

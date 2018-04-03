@@ -65,6 +65,12 @@ class SugarUtil {
             }
         }
     }
+    
+    public static function getServiceUrl() {   
+        $serviceConfig = Config::get('app.service_config');
+        $serverUrl = $serviceConfig['server_url'];                                   
+        return $serverUrl;
+    }
     //
     public static function getDateformat() {
         $preferences = Session::get('user_preferences');
@@ -152,6 +158,6 @@ class SugarUtil {
             $date->setTimezone(new DateTimeZone($timezone));
             return $date->format($format);
         }
-    }   
+    }     
 }
 ?>

@@ -330,5 +330,7 @@ class SugarClient {
 
         return $preferences;
     }
+    
+    
 }
 ?>

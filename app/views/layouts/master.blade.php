@@ -17,6 +17,7 @@
             
         <!-- CSS -->
         <link href="{{ URL::asset('public/vendors/datatables/media/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+        <link href="{{ URL::asset('public/vendors/bower_components/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" type="text/css">                    
         <link href="{{ URL::asset('public/css/app.min.1.css') }}" rel="stylesheet">
         <link href="{{ URL::asset('public/css/app.min.2.css') }}" rel="stylesheet">
         <link href="{{ URL::asset('public/css/styles.css') }}" rel="stylesheet">
@@ -26,6 +27,7 @@
         
         <script type="text/javascript">
             var APP_URL = '{{ URL::to('/') }}';
+            var CRM_URL = '{{ SugarUtil::getServiceUrl() }}';
             var locale = '{{ App::getLocale() }}';
             var Lang = {};  // Js language object
             var cal_date_format = '{{SugarUtil::getDateformat()}}';
@@ -116,6 +118,7 @@
         <script src="{{ URL::asset('public/vendors/bootstrap-growl/bootstrap-growl.min.js') }}"></script>
         <script src="{{ URL::asset('public/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js') }}"></script>
         <script src="{{ URL::asset('public/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+    <script src="{{ URL::asset('public/vendors/bower_components/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js') }}"></script>       
         
         <!-- Placeholder for IE9 -->
         <!--[if IE 9 ]>

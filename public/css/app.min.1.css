@@ -10681,7 +10681,7 @@ h6 small,
 .sidebar {
   position: fixed;
   background: #fff;
-  box-shadow: 0 0 10px rgba(51, 51, 51, 0.38);
+  box-shadow: 0 0 10px rgba(51, 51, 51, 0.38);   
   height: calc(100% - 275px);
   top: 275px;
   -webkit-transition: all;
@@ -13804,7 +13804,6 @@ input:focus {
   left: -1px;
   top: 1px;
 }
-
 
 .radio input {
   width: 19px;
