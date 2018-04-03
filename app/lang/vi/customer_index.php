@@ -8,5 +8,6 @@ return array(
     'description' => 'Ghi chú',  
     'page_title' => 'Danh sách khách hàng',  
     'btn_edit' => 'Sửa',  
+    'btn_detail' => 'Chi tiết',  
     'save_successful_msg' => 'Lưu thành công',  
 );

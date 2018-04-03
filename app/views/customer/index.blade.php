@@ -34,7 +34,7 @@
                                 <td >{{ $customer->phone_mobile }} </td>
                                 <td >{{ $customer->description }} </td>                                          
                                 <td style="text-align:center">
-                                    <button type="button" class="btn btn-primary btn_edit" url="{{ URL::to('customer/edit') }}" onclick="editCustomer($(this).closest('tr'));">{{ trans('customer_index.btn_edit') }}</button>
+                                    <button type="button" class="btn btn-primary btn_edit" url="{{ URL::to('customer/view') }}" onclick="editCustomer($(this).closest('tr'));">{{ trans('customer_index.btn_detail') }}</button>
                                 </td>                                          
                             </tr>
                         @endforeach

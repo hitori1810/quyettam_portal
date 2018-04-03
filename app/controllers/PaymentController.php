@@ -17,10 +17,7 @@ class PaymentController extends BaseController {
     public function edit() {
         $session = Session::get('session');
         $user = Session::get('user');   
-        $app_list_strings = Session::get('app_list_strings');                         
-
-        $productList = $this->client->call2("GetProductList", array());
-        $productList = $productList->entry_list;
+        $app_list_strings = Session::get('app_list_strings');
         
         if(!empty($_REQUEST['id'])){
             $recordId = $_REQUEST['id'];
@@ -39,9 +36,7 @@ class PaymentController extends BaseController {
                     'payment_date' => $paymentInfo->payment_date,      
                     'paymentAmount' => round($paymentInfo->payment_amount),                               
                     'paymentDetail' => $paymentDetail,
-                    'paymentDetailJson' => $paymentInfo->payment_detail,
-                    'customerList' => $app_list_strings->entry_list->customer_options,      
-                    'productList' => $productList,      
+                    'paymentDetailJson' => $paymentInfo->payment_detail,  
                 );    
             }          
 
@@ -52,9 +47,19 @@ class PaymentController extends BaseController {
                 'name' => '',      
                 'customer' => '',      
                 'payment_date' => '',      
-                'payment_amount' => '',       
+                'paymentAmount' => '',            
+                'paymentDetail' => '',            
+                'paymentDetailJson' => '',            
             );    
         }    
+        
+                                 
+
+        $productList = $this->client->call2("GetProductList", array());
+        $productList = $productList->entry_list;
+        
+        $data['customerList'] = $app_list_strings->entry_list->customer_options;
+        $data['productList'] = $productList;
 
         return View::make('payment.edit')->with($data);    
     }

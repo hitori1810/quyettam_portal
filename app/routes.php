@@ -25,6 +25,7 @@
         Route::post('/user/savePassword', 'UserController@savePassword');                    
         Route::get('/customer/index', 'CustomerController@index');                      
         Route::get('/customer/edit', 'CustomerController@edit');                   
+        Route::get('/customer/view', 'CustomerController@view');                   
         Route::post('/customer/save', 'CustomerController@save');                   
         Route::get('/payment/index', 'PaymentController@index');                      
         Route::get('/payment/edit', 'PaymentController@edit');                      

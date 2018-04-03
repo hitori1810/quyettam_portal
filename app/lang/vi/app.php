@@ -26,6 +26,7 @@ return array(
     'datatable_footer_info_filtered' => '(được lọc ra từ tổng số _MAX_ dòng)',
     'datatable_footer_info_empty' => 'Không có dữ liệu',
     'btn_save_text' => 'Lưu',
+    'btn_edit_text' => 'Sửa',
     'btn_send_text' => 'Gửi',
     'btn_cancel_text' => 'Hủy',
     'btn_delete_text' => 'Xóa',

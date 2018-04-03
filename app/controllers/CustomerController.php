@@ -47,6 +47,51 @@ class CustomerController extends BaseController {
         return View::make('customer.edit')->with($data);    
     }
 
+    // Render the add page
+    public function view() {
+        $session = Session::get('session');
+        $user = Session::get('user');  
+
+        if(!empty($_REQUEST['id'])){
+            $customerId = $_REQUEST['id'];
+            $data = array(
+                'id' => $customerId                  
+            );
+            $customerEntry = $this->client->call2('GetCustomerInfo', $data);  
+            $customerInfo = $customerEntry->entry_list;
+            
+            $data = array(
+                'customerId' => $customerId                  
+            ); 
+            $paymentList = $this->client->call2('GetCustomerPaymentHistory', $data);  
+            $paymentList = $paymentList->entry_list;  
+            
+            if(!empty($customerInfo)){
+                $data = array(       
+                    'record_id' => $customerInfo->id,      
+                    'name' => $customerInfo->first_name,      
+                    'department' => $customerInfo->department,      
+                    'phone_mobile' => $customerInfo->phone_mobile,      
+                    'description' => $customerInfo->description, 
+                    'paymentList' => $paymentList,    
+                );    
+            }          
+
+        }
+        else{
+            $data = array(       
+                'record_id' => '',      
+                'name' => '',      
+                'department' => '',      
+                'phone_mobile' => '',      
+                'description' => '',     
+                'paymentList' => array(),     
+            );    
+        }    
+
+        return View::make('customer.view')->with($data);    
+    }
+
     // Handle saving feedback
     public function save() {
         $session = Session::get('session');

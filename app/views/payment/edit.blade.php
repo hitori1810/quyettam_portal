@@ -5,6 +5,8 @@
 @section('styles')                                                                              
 <link href="{{ URL::asset('public/css/DynamicTable.css') }}" rel="stylesheet" type="text/css">          
 <link href="{{ URL::asset('public/css/payment_edit.css') }}" rel="stylesheet" type="text/css">          
+<!--<link href="{{ URL::asset('public/vendors/bower_components/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" type="text/css">                    -->
+                                                                                                                              
 @stop
       
 @section('content')
@@ -18,7 +20,7 @@
             <div class="card-body card-padding">
                 <form id="form-edit-payment" action="{{ URL::to('payment/save') }}" method="post">     
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">{{ trans('payment_edit.customer') }}</label>
                                 <div class="fg-line">
@@ -31,27 +33,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div>   
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="control-label">{{ trans('payment_edit.payment_date') }}</label>
-                                <div class="fg-line">
-                                    <input type="text" id="payment_date" name="payment_date" class="form-control" value="{{$payment_date}}"></input>
-                                </div>   
-                                <div class="input-group form-group">
-                                    <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
-                                        <div class="dtp-container fg-line">
-                                        <input type='text' class="form-control date-picker" placeholder="Click here..." value="{{$payment_date}}">
-                                    </div>
+                        <div class="col-sm-6">
+                            <label class="control-label">{{ trans('payment_edit.payment_date') }}</label>
+                            <div class="input-group form-group">
+                                <div class="dtp-container fg-line">
+                                    <input type='text' class="form-control date-picker" value="{{$payment_date}}"></input>  
                                 </div>
                             </div>
                         </div>
-                    </div>  
+                    </div>    
                     <div class="row form-group">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <h3>{{ trans('payment_edit.payment_detail') }}</h3>
+                                <h4>{{ trans('payment_edit.payment_detail') }}</h4><br>
                                 <div class="fg-line">                                                                                                     
                                     
                                     <table id="tblPayDetail" class="table table-bordered dynamicTable">
@@ -62,7 +56,7 @@
                                             <th style="width:15%">{{ trans('payment_edit.unit') }}</th>
                                             <th style="width:10%">{{ trans('payment_edit.unit_cost') }}</th>
                                             <th style="width:15%">{{ trans('payment_edit.pay_detail_amount') }}</th>           
-                                            <th style="width:10%"><input type="button" class="btnAddRow btn btn-primary waves-effect" value="{{ trans('payment_edit.add_row') }}" onclick="addRow(this);"></input></th>
+                                            <th style="width:10%"><input type="button" class="btnAddRow" value="{{ trans('payment_edit.add_row') }}" onclick="addRow(this);"></input></th>
                                         </tr>
                                     </thead>
                                     <tbody>           
@@ -120,12 +114,14 @@
 
     {{ ViewUtil::renderJsLanguage('payment_edit') }}
 
-    <script src="{{ URL::asset('public/vendors/jquery-validate/jquery.validate.min.js') }}"></script> 
-    <script src="{{ URL::asset('public/js/DynamicTable.js') }}"></script>      
-    <script src="{{ URL::asset('public/js/payment_edit.js') }}"></script>      
+    <script src="{{ URL::asset('public/vendors/jquery-validate/jquery.validate.min.js') }}"></script>                                    
+    <script src="{{ URL::asset('public/js/payment_edit.js') }}"></script>                                                                
+    <script src="{{ URL::asset('public/vendors/bower_components/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js') }}"></script>       
+    
+                                                                                                                                 
     @if(Session::has('error_message'))
         <script type="text/javascript">
-            Notification.notify('{{ Session::get('error_message') }}', 'dander');
+            Notification.notify("{{ Session::get('error_message') }}", 'dander');
         </script>
     @endif
     

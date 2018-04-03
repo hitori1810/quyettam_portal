@@ -28,7 +28,7 @@
                         </div>
                     </div>   
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">{{ trans('product_edit.unit_cost') }}</label>
                                 <div class="fg-line">
@@ -36,9 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>  
-                    <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">{{ trans('product_edit.unit') }}</label>
                                 <div class="fg-line">
@@ -46,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>   
+                    </div>     
                     
                     <button type="submit" class="btn btn-primary btn-sm m-t-10">{{ trans('app.btn_save_text') }}</button>
                 </form>       
