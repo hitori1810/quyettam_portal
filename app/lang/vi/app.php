@@ -2,8 +2,8 @@
 
 return array(
 
-    'app_title' => 'ATLANTIC EDU',
-    'company_name' => 'ATLANTIC',
+    'app_title' => 'QUYET TAM PRINTING',
+    'company_name' => 'QUYET TAM PRINTING',
     'spinner_text' => 'Vui lòng đợi...',
     'view_profile' => 'Thông tin cá nhân',
     'change_password' => 'Đổi mật khẩu',

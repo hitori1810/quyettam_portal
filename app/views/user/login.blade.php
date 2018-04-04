@@ -53,7 +53,7 @@
             </div>
             <div id="about" class="round10">
                 <div id="logo">
-                    <img src="{{ URL::asset('/public/img/logo.png') }}" alt="Trung tâm ngoại ngữ 5 sao Atlantic" style="width: 320px; height: auto;"/>
+                    <img src="{{ URL::asset('/public/img/logo.png') }}" alt="Trung tâm ngoại ngữ 5 sao Atlantic" style="width: auto; height: 200px;"/>
                 </div>  
                 <div id="description">
 
