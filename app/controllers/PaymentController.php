@@ -2,8 +2,9 @@
 class PaymentController extends BaseController {
 
     public function index() {     
-        $paymentList = $this->client->call2("GetPaymentList", array());  
-        $app_list_strings = Session::get('app_list_strings');             
+        $paymentList = $this->client->call2("GetPaymentList", array());
+        $app_list_strings = $this->client->call2('GetAppListString');
+        Session::put('app_list_strings', $app_list_strings);                     
 
         $data = array(
             'paymentList' => $paymentList->entry_list,
@@ -16,8 +17,9 @@ class PaymentController extends BaseController {
     // Render the add page
     public function edit() {
         $session = Session::get('session');
-        $user = Session::get('user');   
-        $app_list_strings = Session::get('app_list_strings');
+        $user = Session::get('user');                         
+        $app_list_strings = $this->client->call2('GetAppListString');
+        Session::put('app_list_strings', $app_list_strings);
 
         if(!empty($_REQUEST['id'])){
             $recordId = $_REQUEST['id'];
