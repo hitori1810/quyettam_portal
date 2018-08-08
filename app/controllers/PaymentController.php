@@ -29,7 +29,8 @@ class PaymentController extends BaseController {
             $paymentEntry = $this->client->call2('GetPaymentInfo', $data);  
             $paymentInfo = $paymentEntry->entry_list; 
 
-            $paymentDetail = json_decode(html_entity_decode($paymentInfo->payment_detail)); 
+            $paymentDetail = json_decode(html_entity_decode($paymentInfo->payment_detail));    
+            
             if(!empty($paymentInfo)){
                 $data = array(                    
                     'record_id' => $paymentInfo->id,      

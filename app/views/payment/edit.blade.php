@@ -57,8 +57,52 @@
                                             <th style="width:10%"><input type="button" class="btnAddRow btn-primary waves-effect" value="{{ trans('payment_edit.add_row') }}" onclick="addRow(this);"></input></th>
                                         </tr>
                                     </thead>
-                                    <tbody>           
-                                        
+                                    <tbody>   
+                                        @if(!empty($paymentDetail))        
+                                            @foreach($paymentDetail as $key => $value)                      
+                                                <tr>
+                                                    <td>                         
+                                                        <select name="product[]" class="product form-control" onchange="changeProduct($(this).closest('tr'));">                                                      
+                                                            @foreach($productList as $productId => $product)   
+                                                                @if($product->id == $value->product)
+                                                                    <option value="{{ $product->id }}" unit_cost="{{round($product->unit_cost)}}" unit="{{$product->unit}}" selected>
+                                                                        {{$product->name}}
+                                                                    </option>     
+                                                                @else
+                                                                    <option value="{{ $product->id }}" unit_cost="{{round($product->unit_cost)}}" unit="{{$product->unit}}">
+                                                                        {{$product->name}}
+                                                                    </option>      
+                                                                @endif
+                                                                               
+                                                                
+                                                            @endforeach   
+                                                        </select>                                                          
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="quantity[]" width="100%" class="quantity number form-control input-sm" value="{{$value->quantity}}" onchange="calculatePayDetailAmount($(this).closest('tr'));"/>
+                                                    </td>
+                                                    <td class="number">
+                                                        @foreach($productList as $productId => $product)   
+                                                            @if($product->id == $value->product)        
+                                                                <label class="lbl_unit">{{$product->unit}}</label>
+                                                                <input type="hidden" name="unit[]" width="100%" class="unit" value="{{$product->unit}}"/>                                                 
+                                                            @endif        
+                                                        @endforeach                                                                                                                             
+                                                    </td>
+                                                    <td>
+                                                        <label class="lbl_unit_cost">{{$value->unit_cost}}</label>
+                                                        <input type="hidden" name="unit_cost[]" width="100%" class="unit_cost number form-control input-sm" value="{{round($value->unit_cost)}}"  onchange="calculatePayDetailAmount($(this).closest('tr'));"/>
+                                                    </td>  
+                                                    <td class="number">
+                                                        <label class="lbl_pay_detail_amount">{{round($value->payment_amount)}}</label> 
+                                                        <input type="hidden" name="pay_detail_amount[]" width="100%" class="pay_detail_amount" value="{{round($value->payment_amount)}}"/>
+                                                    </td>
+                                                    <td>
+                                                        <input type="button" class="btnDelRow  btn-danger waves-effect" value="{{ trans('payment_edit.remove_row') }}" onclick="delRow(this);"></input>
+                                                    </td>
+                                                </tr>
+                                            @endforeach  
+                                        @endif    
                                     </tbody>
                                     <tfoot class="template" style="display:none">
                                         <tr>
@@ -74,13 +118,14 @@
                                             <td>
                                                 <input type="text" name="quantity[]" width="100%" class="quantity number form-control input-sm" value="" onchange="calculatePayDetailAmount($(this).closest('tr'));"/>
                                             </td>
-                                            <td>
-                                                <input type="text" name="unit_cost[]" width="100%" class="unit_cost number form-control input-sm" value=""  onchange="calculatePayDetailAmount($(this).closest('tr'));"/>
-                                            </td>
                                             <td class="number">
                                                 <label class="lbl_unit"></label>
                                                 <input type="hidden" name="unit[]" width="100%" class="unit" value=""/>                                                 
                                             </td>
+                                            <td>
+                                                <label class="lbl_unit_cost"></label>
+                                                <input type="hidden" name="unit_cost[]" width="100%" class="unit_cost number form-control input-sm" value=""  onchange="calculatePayDetailAmount($(this).closest('tr'));"/>
+                                            </td>   
                                             <td class="number">
                                                 <label class="lbl_pay_detail_amount"></label> 
                                                 <input type="hidden" name="pay_detail_amount[]" width="100%" class="pay_detail_amount" value=""/>
@@ -118,7 +163,7 @@
                                                                                                                                  
     @if(Session::has('error_message'))
         <script type="text/javascript">
-            Notification.notify("{{ Session::get('error_message') }}", 'dander');
+            Notification.notify("{{ Session::get('error_message') }}", 'dander');   
         </script>
     @endif
     

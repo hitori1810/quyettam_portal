@@ -1,5 +1,9 @@
 $(document).ready(function(){  
     generateTable($("#payment_detail_json").val());
+    
+    $("#tblPayDetail tbody tr").each(function(){
+        changeProduct($(this));    
+    });
 })
 
 function generateTable(str){
@@ -32,6 +36,7 @@ function changeProduct(this_row){
     var unit = this_row.find(".product option:selected").attr("unit");
     var unit_cost = this_row.find(".product option:selected").attr("unit_cost");
 
+    this_row.find(".lbl_unit_cost").text(unit_cost);
     this_row.find(".unit_cost").val(unit_cost);
     this_row.find(".unit_cost").trigger("change");
 
